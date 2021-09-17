@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8" />
+        <style>
+            h1{
+                text-align:center;
+            }
+            canvas {
+                background: #eee;
+                }
+            #canvas-wrapper{
+                width:480px;
+                margin:0 auto;
+            }
+        </style>
+    </head>
+<body>
+    <h1>タッチ 3種</h1>
+    <div id="canvas-wrapper">
+    <canvas id="myCanvas" width="480" height="320"></canvas>
+    </div>
+    <script>
+        var canvas = document.getElementById("myCanvas");
+        var ctx = canvas.getContext("2d");
+        canvas.addEventListener("touchstart", touchStart);
+        function touchStart(e){
+            console.log('タップした:' + e.touches);
+        }
+        canvas.addEventListener("touchend", touchEnd);
+        function touchEnd(e){
+            console.log('タップ離した:' + e.touches);
+        }
+        canvas.addEventListener("touchmove", touchMove);
+        function touchMove(e){
+            console.log('タップしたまま移動中:' + e.touches);
+        }
+    </script>
+</body>
+</html>
