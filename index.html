@@ -2,10 +2,54 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <style>
+        #leftButton{
+            position: absolute;
+            top: 400px;
+            left: 420px;
+        }
+
+        #rightButton{
+            position: absolute;
+            top: 400px;
+            left: 580px;
+        }
+
+        #upButton{
+            position: absolute;
+            top: 320px;
+            left: 500px;
+        }
+
+        #downButton{
+            position: absolute;
+            top: 480px;
+            left: 500px;
+        }
+        
+        #turnButton{
+            position: absolute;
+            top: 400px;
+            left: 700px;
+        }
+
+        .button{
+            border: 3px solid;
+            width: 60px;
+            height: 60px;
+            font-size: 5vh;
+            text-align: center;
+            line-height: 60px;
+        }
+    </style>
 </head>
 <body>
     <canvas id="myCanvas"></canvas>
-    <button id="leftButton">←</button>
+    <div id="leftButton" class="button">←</div>
+    <div id="rightButton" class="button">→</div>
+    <div id="upButton" class="button">↑</div>
+    <div id="downButton" class="button">↓</div>
+    <div id="turnButton" class="button">↻</div>
     <script> 
         //フィールド内の最大ブロック数
         const Field_col = 10;
@@ -187,7 +231,7 @@
                         drawBlock(tetro_x + x,tetro_y + y,tetro_t);
                     }
                     if(Tetro_types[tetro_n][y][x]){
-                        drawBlock(14+x,4+y,tetro_n);
+                        drawBlock(14+x,3+y,tetro_n);
                     }
                 }
             }
@@ -209,7 +253,7 @@
             drawScore();
             drawNexttetro();
             //drawNext();
-            drawButton();
+            //drawButton();
 
             if( over ){
                 var s = "GAME OVER"
@@ -326,22 +370,24 @@
             score = linec * 10;
             ctx.font = "40px 'ＭＳ ゴシック'";
             ctx.fillStyle = "black"; 
-            ctx.fillText("Score："+score, 400,360);
+            ctx.fillText("Score："+score, 400,260);
         }
 
         //次の落下ブロックの表示
         function drawNexttetro(){
             ctx.font = "40px 'ＭＳ ゴシック'";
             ctx.fillStyle = "black"; 
-            ctx.fillText("Next", 400,120);
+            ctx.fillText("Next", 400,80);
         }
 
+        /*
         //ボタンの描画
         function drawButton(){
             ctx.font = "40px 'ＭＳ ゴシック'";
             ctx.fillStyle = "black"; 
             ctx.fillText("⬅️", 400,500);
         }
+        */
         
         /*
         //次の落下ブロックの描画
@@ -401,15 +447,16 @@
             }
         }
         */
-        
-        var leftPressed = false;
-        var rightPressed = false;
-
+  
         var leftButton = document.getElementById("leftButton");
-        
+        var rightButton = document.getElementById("rightButton");
+        var upButton = document.getElementById("upButton");
+        var downButton = document.getElementById("downButton");
+        var turnButton = document.getElementById("turnButton");
+
         leftButton.addEventListener("touchstart", touchleft);
         leftButton.addEventListener("touchend", touchleft);
-        
+
         function touchleft(e){
             if(e.type == 'touchstart'){
                 leftPressed = true;
@@ -417,7 +464,6 @@
                 leftPressed = false;
             }
         }
-
         function drawMove(){
             if( leftPressed ){
                 if( checkMove( -1, 0 ) )
@@ -430,14 +476,18 @@
             }
             drawAll();
         }
-        
-        
+
+        /*
+        var leftPressed = false;
+        var rightPressed = false;
+        */
+
         
         init();
         setTetro();
         drawAll();
         setInterval( dropTetro, game_speed );
-        //touchLeft();
+        touchLeft();
         //buttonMove();
         drawMove();
 
