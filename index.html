@@ -430,49 +430,33 @@
         var downButton = document.getElementById("downButton");
         var turnButton = document.getElementById("turnButton");
 
-        leftButton.addEventListener("touchstart", touchleft, false);
-        leftButton.addEventListener("touchend", touchleft, false);
+        leftButton.addEventListener("touchstart", function touchleft1(){
+            leftPressed = true;
+        }, false);
+        leftButton.addEventListener("touchend", function touchleft2(){
+            leftPressed = false;
+        }, false);
 
-        rightButton.addEventListener("touchstart", touchright, false);
-        rightButton.addEventListener("touchend", touchright, false);
+        rightButton.addEventListener("touchstart", function touchright1(){
+            rightPressed = true;
+        }, false);
+        rightButton.addEventListener("touchend", function touchright2(){
+            rightPressed = false;
+        }, false);
 
-        downButton.addEventListener("touchstart", touchdown, false);
-        downButton.addEventListener("touchend", touchdown, false);
+        upButton.addEventListener("touchstart", function touchup1(){
+            upPressed = true;
+        }, false);
+        upButton.addEventListener("touchend", function touchup2(){
+            upPressed = false;
+        }, false);
 
-        turnButton.addEventListener("touchstart", touchturn, false);
-        turnButton.addEventListener("touchend", touchturn, false);
-
-        function touchleft(e){
-            if(e.type == 'touchstart'){
-                leftPressed = true;
-            }else if(e.type == 'touchend'){
-                leftPressed = false;
-            }
-        }
-
-        function touchright(e){
-            if(e.type == 'touchstart'){
-                rightPressed = true;
-            }else if(e.type == 'touchend'){
-                rightPressed = false;
-            }
-        }
-
-        function touchdown(e){
-            if(e.type == 'touchstart'){
-                downPressed = true;
-            }else if(e.type == 'touchend'){
-                downPressed = false;
-            }
-        }
-
-        function touchturn(e){
-            if(e.type == 'touchstart'){
-                turnPressed = true;
-            }else if(e.type == 'touchend'){
-                turnPressed = false;
-            }
-        }
+        turnButton.addEventListener("touchstart", function touchturn1(){
+            turnPressed = true;
+        }, false);
+        turnButton.addEventListener("touchend", function touchturn2(){
+            turnPressed = false;
+        }, false);
 
         function drawMove(){
             if( leftPressed = true ){
