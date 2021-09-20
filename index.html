@@ -459,22 +459,19 @@
         }, false);
 
         function drawMove(){
-            if( leftPressed = true ){
-                if( checkMove( -1, 0 ) )
-                    tetro_x--;  
+            if( leftPressed && checkMove( -1, 0 ) ){
+                tetro_x--;  
             }
 
-            if( rightPressed = true ){
-                if( checkMove( 1, 0 ) )
-                    tetro_x++;
+            if( rightPressed && checkMove( 1, 0 ) ){
+                tetro_x++;
             }
 
-            if( downPressed = true ){
-                if( checkMove( 0, 1 ) )
-                    tetro_y++;
+            if( downPressed && checkMove( 0, 1 ) ){
+                tetro_y++;
             }
 
-            if( turnPressed = true ){
+            if( turnPressed ){
                 var ntetro = rotate();
                     if( checkMove( 0, 0, ntetro ) )
                         tetro = ntetro;
@@ -486,9 +483,8 @@
         init();
         setTetro();
         drawAll();
+	drawMove();
         setInterval( dropTetro, game_speed );
-        touchLeft();
-        drawMove();
 
     </script>
 </body>
