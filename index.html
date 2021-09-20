@@ -15,12 +15,6 @@
             left: 580px;
         }
 
-        #upButton{
-            position: absolute;
-            top: 320px;
-            left: 500px;
-        }
-
         #downButton{
             position: absolute;
             top: 480px;
@@ -37,7 +31,7 @@
             border: 3px solid;
             width: 60px;
             height: 60px;
-            font-size: 5vh;
+            font-size: 4vh;
             text-align: center;
             line-height: 60px;
         }
@@ -47,7 +41,6 @@
     <canvas id="myCanvas"></canvas>
     <div id="leftButton" class="button">←</div>
     <div id="rightButton" class="button">→</div>
-    <div id="upButton" class="button">↑</div>
     <div id="downButton" class="button">↓</div>
     <div id="turnButton" class="button">↻</div>
     <script> 
@@ -435,27 +428,28 @@
             }
             drawAll();
         }
-
-        /*左移動ボタン←
-        document.addEventListener("touchstart", touchLeft);
-        document.addEventListener("touchmove", touchLeft);
         
-        function touchLeft(e) {
-            if(e.touches) {
-                if( checkMove( -1, 0 ) )
-                    tetro_x--;
-            }
-        }
-        */
-  
+        var leftPressed = false;
+        var rightPressed = false;
+        var downPressed = false;
+        var turnPressed = false;
+        
         var leftButton = document.getElementById("leftButton");
         var rightButton = document.getElementById("rightButton");
-        var upButton = document.getElementById("upButton");
         var downButton = document.getElementById("downButton");
         var turnButton = document.getElementById("turnButton");
 
         leftButton.addEventListener("touchstart", touchleft);
         leftButton.addEventListener("touchend", touchleft);
+
+        rightButton.addEventListener("touchstart", touchright);
+        rightButton.addEventListener("touchend", touchright);
+
+        downButton.addEventListener("touchstart", touchdown);
+        downButton.addEventListener("touchend", touchdown);
+
+        turnButton.addEventListener("touchstart", touchturn);
+        turnButton.addEventListener("touchend", touchturn);
 
         function touchleft(e){
             if(e.type == 'touchstart'){
@@ -464,6 +458,31 @@
                 leftPressed = false;
             }
         }
+
+        function touchright(e){
+            if(e.type == 'touchstart'){
+                rightPressed = true;
+            }else if(e.type == 'touchend'){
+                rightPressed = false;
+            }
+        }
+
+        function touchdown(e){
+            if(e.type == 'touchstart'){
+                downPressed = true;
+            }else if(e.type == 'touchend'){
+                downPressed = false;
+            }
+        }
+
+        function touchturn(e){
+            if(e.type == 'touchstart'){
+                turnPressed = true;
+            }else if(e.type == 'touchend'){
+                turnPressed = false;
+            }
+        }
+
         function drawMove(){
             if( leftPressed ){
                 if( checkMove( -1, 0 ) )
@@ -474,19 +493,26 @@
                 if( checkMove( 1, 0 ) )
                     tetro_x++;
             }
+
+            if( downPressed ){
+                if( checkMove( 0, 1 ) )
+                    tetro_y++;
+            }
+
+            if( turnPressed ){
+                var ntetro = rotate();
+                    if( checkMove( 0, 0, ntetro ) )
+                        tetro = ntetro;
+            }
             drawAll();
         }
 
-        var leftPressed = false;
-        var rightPressed = false;
-        
         
         init();
         setTetro();
         drawAll();
         setInterval( dropTetro, game_speed );
         touchLeft();
-        //buttonMove();
         drawMove();
 
     </script>
