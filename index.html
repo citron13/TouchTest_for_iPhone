@@ -430,17 +430,17 @@
         var downButton = document.getElementById("downButton");
         var turnButton = document.getElementById("turnButton");
 
-        leftButton.addEventListener("touchstart", touchleft);
-        leftButton.addEventListener("touchend", touchleft);
+        leftButton.addEventListener("touchstart", touchleft, false);
+        leftButton.addEventListener("touchend", touchleft, false);
 
-        rightButton.addEventListener("touchstart", touchright);
-        rightButton.addEventListener("touchend", touchright);
+        rightButton.addEventListener("touchstart", touchright, false);
+        rightButton.addEventListener("touchend", touchright, false);
 
-        downButton.addEventListener("touchstart", touchdown);
-        downButton.addEventListener("touchend", touchdown);
+        downButton.addEventListener("touchstart", touchdown, false);
+        downButton.addEventListener("touchend", touchdown, false);
 
-        turnButton.addEventListener("touchstart", touchturn);
-        turnButton.addEventListener("touchend", touchturn);
+        turnButton.addEventListener("touchstart", touchturn, false);
+        turnButton.addEventListener("touchend", touchturn, false);
 
         function touchleft(e){
             if(e.type == 'touchstart'){
