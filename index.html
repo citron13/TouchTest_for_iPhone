@@ -31,7 +31,7 @@
             border: 3px solid;
             width: 60px;
             height: 60px;
-            font-size: 4vh;
+            font-size: 2vh;
             text-align: center;
             line-height: 60px;
         }
@@ -374,15 +374,6 @@
         }
 
         /*
-        //ボタンの描画
-        function drawButton(){
-            ctx.font = "40px 'ＭＳ ゴシック'";
-            ctx.fillStyle = "black"; 
-            ctx.fillText("⬅️", 400,500);
-        }
-        */
-        
-        /*
         //次の落下ブロックの描画
         function drawNext(){         
             for(var y=0; y<Tetro_size; y++){
@@ -484,22 +475,22 @@
         }
 
         function drawMove(){
-            if( leftPressed ){
+            if( leftPressed = true ){
                 if( checkMove( -1, 0 ) )
                     tetro_x--;  
             }
 
-            if( rightPressed ){
+            if( rightPressed = true ){
                 if( checkMove( 1, 0 ) )
                     tetro_x++;
             }
 
-            if( downPressed ){
+            if( downPressed = true ){
                 if( checkMove( 0, 1 ) )
                     tetro_y++;
             }
 
-            if( turnPressed ){
+            if( turnPressed = true ){
                 var ntetro = rotate();
                     if( checkMove( 0, 0, ntetro ) )
                         tetro = ntetro;
